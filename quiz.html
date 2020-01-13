@@ -10,8 +10,79 @@
         <title>Code Quiz!!!</title>
     </head>
     <body>
+        <div class="row">
+            <h4 id="highscores">View Highscores</h4>
+            <h4 id="timer">Time: <span class="score"></span></h4>
+        </div>
+        <div class="row container">
+            <div class="container start">
+                <h2>Coding Quiz Challenge</h2>
+                <p>Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+                <button></button>>
+            </div>
+            <div class="hide">
+                <h3>Commonly used data types DO NOT include:</h3>
+                <ul>
+                    <li class="wrong">1. strings</li>
+                    <li class="wrong">2. booleans</li>
+                    <li class="correct">3. alerts</li>
+                    <li class="wrong">4. numbers</li>
+                </ul>
+            </div>
+            <div class="hide">
+                <h3>The condition in an if/else statement is enclosed within _____.</h3>
+                <ul>
+                    <li>1. quotes</li>
+                    <li>2. curly brackets</li>
+                    <li>3. parentheses </li>
+                    <li>4. square brackets</li>
+                </ul>
+            </div>
+            <div class="hide">
+                <h3>Arrays in JavaScript can be used to store _____.</h3>
+                <ul>
+                    <li>1. numbers and strings</li>
+                    <li>2. other arrays</li>
+                    <li>3. booleans</li>
+                    <li>4. all of the above</li>
+                </ul>
+            </div>
+            <div class="hide">
+                <h3>String values must be enclosed within _____ when being assigned to variables.</h3>
+                <ul>
+                    <li>1. commas</li>
+                    <li>2. curly brackets</li>
+                    <li>3. quotes</li>
+                    <li>4. parentheses</li>
+                </ul>
+            </div>
+            <div class="hide">
+                <h3>A very useful tool used during development and debugging for printing content to the debugger is _____.</h3>
+                <ul>
+                    <li>1. JavaScript</li>
+                    <li>2. terminal/bash</li>
+                    <li>3. for loops</li>
+                    <li>4. console.log</li>
+                </ul>
+            </div>
+            <p id="correctConf" class="hide">Correct!</p>
+            <p id="wrongConf" class="hide">Wrong!</p>
+            <div id="allDone" class="hide">
+                <h3>All done!</h3>
+                <p>Your final score is <span class="score"></span>.</p>
+                <p>Enter initials:<!-- code a text field here --><button></button></p>
+            </div>
+            <div id="scoreboard" class="hide">
+                <h2>Highscores</h2>
+                <ul>
+                    
+                </ul>
+                <button>Go Back</button><button>Clear Highscores</button>
+            </div>
+
+        </div>
         
         
-        <script src="script.js"></script>
+        <script src="quiz.js"></script>
     </body>
 </html>

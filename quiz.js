@@ -10,6 +10,7 @@ var startPageEl = document.querySelector("#startPage");
 var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score")
 var secondsLeft;
+var countdown;
 
 init();
 
@@ -28,13 +29,12 @@ startBtn.addEventListener("click", function() {
 
 // })
 
-
-
 function timer() {
   // WHEN I GO BACK AND RESTART THE INTERVAL DOUBLES UP.  NEED TO FIX
+  clearInterval(countdown);
   secondsLeft = 75;
   score.textContent = secondsLeft;
-  var countdown = setInterval(function() {
+  countdown = setInterval(function() {
     secondsLeft--;
     score.textContent = secondsLeft;
     if (secondsLeft === 0) {

@@ -31,6 +31,7 @@ startBtn.addEventListener("click", function() {
 
 
 function timer() {
+  // WHEN I GO BACK AND RESTART THE INTERVAL DOUBLES UP.  NEED TO FIX
   secondsLeft = 75;
   score.textContent = secondsLeft;
   var countdown = setInterval(function() {

@@ -12,16 +12,16 @@
   <body>
     <div class="row">
       <h6 id="highScores" class="col-6">View Highscores</h6>
-      <h6 id="timer" class="col-6" >Time: <span class="score"></span></h6>
+      <h6 id="timer" class="col-6" >Time: <span id="score"></span></h6>
     </div>
     <div class="row">
       <div class="col-md-3"></div>
-      <div class="col-md-6 active">
+      <div id="startPage" class="col-md-6 active">
         <h2>Coding Quiz Challenge</h2>
         <p>Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-        <button type="button" class="btn-purp">Start Quiz</button>
+        <button id="startBtn" type="button" class="btn-purp">Start Quiz</button>
       </div>
-      <div class="col-md-6 hide">
+      <div id="q1" class="col-md-6 hide">
         <h3>Commonly used data types DO NOT include:</h3>
         <ul>
           <li class="wrong"><button class="btn-purp">1. strings</button></li>
@@ -30,7 +30,7 @@
           <li class="wrong"><button class="btn-purp">4. numbers</button></li>
         </ul>
       </div>
-      <div class="col-md-6 hide">
+      <div id="q2" class="col-md-6 hide">
         <h3>The condition in an if/else statement is enclosed within _____.</h3>
         <ul>
           <li class="wrong"><button class="btn-purp">1. quotes</button></li>
@@ -39,7 +39,7 @@
           <li class="wrong"><button class="btn-purp">4. square brackets</button></li>
         </ul>
       </div>
-      <div class="col-md-6 hide">
+      <div id="q3" class="col-md-6 hide">
         <h3>Arrays in JavaScript can be used to store _____.</h3>
         <ul>
           <li class="wrong"><button class="btn-purp">1. numbers and strings</button></li>
@@ -48,7 +48,7 @@
           <li class="correct"><button class="btn-purp">4. all of the above</button></li>
         </ul>
       </div>
-      <div class="col-md-6 hide">
+      <div id="q4" class="col-md-6 hide">
         <h3>String values must be enclosed within _____ when being assigned to variables.</h3>
         <ul>
           <li class="wrong"><button class="btn-purp">1. commas</button></li>
@@ -57,7 +57,7 @@
           <li class="wrong"><button class="btn-purp">4. parentheses</button></li>
         </ul>
       </div>
-      <div class="col-md-6 hide">
+      <div id="q5" class="col-md-6 hide">
         <h3>A very useful tool used during development and debugging for printing content to the debugger is _____.</h3>
         <ul>
           <li class="wrong"><button class="btn-purp">1. JavaScript</button></li>
@@ -88,7 +88,7 @@
         <ul id="highScoresList">
             
         </ul>
-        <button class="btn-purp" id="goBack">Go Back</button><button id="clearScores" class="btn-purp">Clear Highscores</button>
+        <button class="btn-purp" id="goBackBtn">Go Back</button><button id="clearScores" class="btn-purp">Clear Highscores</button>
       </div>
       <div class="col-md-3"></div>
 

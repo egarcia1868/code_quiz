@@ -3,13 +3,21 @@ var highScoresListEl = document.querySelector("#highScoresList");
 var initialsEl = document.querySelector("#initials");
 var highScoresCount = 0;
 var scoreboardEl = document.querySelector("#scoreboard");
-var highScoresEl = document.querySelector("#highScores")
+var highScoresEl = document.querySelector("#highScores");
 var highScores = [];
+var goBackBtn = document.querySelector("#goBackBtn");
+var startPageEl = document.querySelector("#startPage");
+var startBtn = document.querySelector("#startBtn");
+var score = document.querySelector("#score")
 
 init();
 
-//  THIS MAY CAUSE PROBLEMS AS THE HIDESWAP MAY RUN AS SOON AS PAGE LOADS
-highScoresEl.addEventListener("click", function() {hideSwap(scoreboard);});
+highScoresEl.addEventListener("click", function() {hideSwap(scoreboardEl);});
+goBackBtn.addEventListener("click", function() {hideSwap(startPageEl)});
+startBtn.addEventListener("click", function() {hideSwap(q1)});
+startBtn.addEventListener("click", function() {
+  score.innerHTML = 75;
+});
 
 function hideSwap(clickedDestination) {
 var activeEl = document.querySelector(".active");
@@ -29,7 +37,7 @@ clickedDestination.classList.add("active");
 function renderHighScores() {
   // Clear highScoresList element and update highScoresCount
   highScoresListEl.innerHTML = "";
-  highScoresCount = highScores.length;
+  // highScoresCount = highScores.length;
 
 
   // Render a new li for each high score
@@ -71,7 +79,7 @@ function init() {
   
     // If scores were retrieved from localStorage, update the highScores array to it
     if (storedHighScores !== null) {
-      highScores = storedScores;
+      highScores = storedHighScores;
     }
   
     // Render highScores to the DOM

@@ -9,15 +9,55 @@ var goBackBtn = document.querySelector("#goBackBtn");
 var startPageEl = document.querySelector("#startPage");
 var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score")
+var secondsLeft;
 
 init();
 
 highScoresEl.addEventListener("click", function() {hideSwap(scoreboardEl);});
 goBackBtn.addEventListener("click", function() {hideSwap(startPageEl)});
-startBtn.addEventListener("click", function() {hideSwap(q1)});
 startBtn.addEventListener("click", function() {
-  score.innerHTML = 75;
+  hideSwap(q1);
+  timer();
+  
 });
+// NEED TO MAKE A CORRECT ANSWER VALIDATOR HERE SOMEHOW
+// THINKING SOMETHING INVOLVING event.target (li) not equal to correct -15 secondsLeft
+// MOVE TO NEXT Q - UNHIDE "WRONG" FOR ONE SECOND
+
+// document.addEventListener("click", function() {
+
+// })
+
+
+
+function timer() {
+  secondsLeft = 75;
+  score.textContent = secondsLeft;
+  var countdown = setInterval(function() {
+    secondsLeft--;
+    score.textContent = secondsLeft;
+    if (secondsLeft === 0) {
+      clearInterval(countdown);
+      // ADD "YOU ARE SO DUMB" GIF HERE IF TIME ALLOWS
+    }
+
+  }, 1000)
+};
+
+// var secondsLeft = 10;
+
+// function setTime() {
+//   var timerInterval = setInterval(function() {
+//     secondsLeft--;
+//     timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+//     if(secondsLeft === 0) {
+//       clearInterval(timerInterval);
+//       sendMessage();
+//     }
+
+//   }, 1000);
+// }
 
 function hideSwap(clickedDestination) {
 var activeEl = document.querySelector(".active");

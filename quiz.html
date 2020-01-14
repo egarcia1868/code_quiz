@@ -10,9 +10,9 @@
     <title>Code Quiz!!!</title>
   </head>
   <body>
-    <div class="container">
-      <h6 id="highscores">View Highscores</h6>
-      <h6 id="timer">Time: <span class="score"></span></h6>
+    <div class="row">
+      <h6 id="highScores" class="col-6">View Highscores</h6>
+      <h6 id="timer" class="col-6" >Time: <span class="score"></span></h6>
     </div>
     <div class="row">
       <div class="col-md-3"></div>
@@ -77,13 +77,13 @@
           <input id="init" type="text" name="text">
           <input type="submit" value="Submit" class="btn-purp">
         </form> -->
-      </div>
-      <div id="scoreboard" class="col-md-6 hide">
         <form id="highScoresForm" method="POST">
           <label for="initials">Enter initials: </label>
           <input type="text" name="initials" id="initials"/>
           <input type="submit" value="Submit" class="btn-purp"/>
         </form>
+      </div>
+      <div id="scoreboard" class="col-md-6 hide">
         <h2>TOP TEN HIGHSCORES</h2>
         <ul id="highScoresList">
             

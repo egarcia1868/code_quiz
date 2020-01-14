@@ -1,27 +1,24 @@
-var highScoresForm = document.querySelector("#highScoresForm");
-var highScoresList = document.querySelector("#highScoresList");
-var initialsEntered = document.querySelector("#initials");
+var highScoresFormEl = document.querySelector("#highScoresForm");
+var highScoresListEl = document.querySelector("#highScoresList");
+var initialsEl = document.querySelector("#initials");
 var highScoresCount = 0;
-
+var scoreboardEl = document.querySelector("#scoreboard");
+var highScoresEl = document.querySelector("#highScores")
 var highScores = [];
 
 init();
 
-// function sortHighScores () {
-//   for () {
+//  THIS MAY CAUSE PROBLEMS AS THE HIDESWAP MAY RUN AS SOON AS PAGE LOADS
+highScoresEl.addEventListener("click", function() {hideSwap(scoreboard);});
 
-//   }
-// }
-
-function hideSwap(clickedButton) {
-var hiddenEls = document.getElementsByClassName("hide");
-var activeEl = document.getElementsByClassName("active");
-var temp = activeEl;
+function hideSwap(clickedDestination) {
+var activeEl = document.querySelector(".active");
 
 activeEl.classList.remove("active");
 activeEl.classList.add("hide");
 
-clickedButton.
+clickedDestination.classList.remove("hide");
+clickedDestination.classList.add("active");
 
   // var value = event.target.value;
   // if(value === "keydown") {
@@ -31,7 +28,7 @@ clickedButton.
 
 function renderHighScores() {
   // Clear highScoresList element and update highScoresCount
-  highScoresList.innerHTML = "";
+  highScoresListEl.innerHTML = "";
   highScoresCount = highScores.length;
 
 
@@ -58,8 +55,10 @@ function renderHighScores() {
       //   highScores[]
       }
     }
+
+    // THIS MAY NOT CORRECTLY ALLOW THE LAST SCORE TO REMAIN -- CHECK BACK
     if (i < 11) {
-    highScoresList.appendChild(li);
+    highScoresListEl.appendChild(li);
     } else {
       return
     }
@@ -71,12 +70,12 @@ function init() {
     var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
   
     // If scores were retrieved from localStorage, update the highScores array to it
-    if (storedScores !== null) {
+    if (storedHighScores !== null) {
       highScores = storedScores;
     }
   
     // Render highScores to the DOM
-    renderScores();
+    renderHighScores();
   }
   
   function storeHighScores() {
@@ -85,13 +84,13 @@ function init() {
   }
   
   // When form is submitted...
-  HighScoresForm.addEventListener("submit", function(event) {
-    hideSwap(event.target);
+  highScoresFormEl.addEventListener("submit", function(event) {
+    hideSwap(scoreboard);
     event.preventDefault();
   
-    var initials = initialsEntered.value.trim();
+    var initials = initialsEl.value.trim();
   
-    // Return from function early if submitted initialsEntered is blank or too long
+    // Return from function early if submitted initialsEl is blank or too long
     // MAY NEED TO RETURN HERE IF IT DOESN'T ALLOW FOR INITIAL REENTRY
     if (initials === "") {
       return;
@@ -100,9 +99,9 @@ function init() {
       return;      
     }
   
-    // Add new initialsEntered to highScores array, clear the input
+    // Add new initialsEl to highScores array, clear the input
     highScores.push(initials);
-    initialsEntered.value = "";
+    initialsEl.value = "";
   
     // Store updated highScores in localStorage, re-render the list
     storeHighScores();
@@ -116,6 +115,6 @@ function init() {
     //   // Store empty highScores in localStorage, re-render the empty list
       storeHighScores();
       renderHighScores();
-    }
-  });
+    })
+  ;
   

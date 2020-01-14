@@ -1,15 +1,15 @@
-#highscores {
-  float: left;
-
+#highScores {
+  padding-left: 25px;
 }
 
 #timer {
-  float: right;
+  text-align: right;
+  padding-right: 25px;
 }
 
-/* .hide {
+.hide {
   display: none;
-} */
+}
 
 .active {
   margin-top: 50px;
@@ -39,5 +39,14 @@
 
 .clearScores {
   margin-left: 10px;
-  
+
 }
+
+/* .container h6:first-of-type {
+  float: left;
+}
+
+.container h6:last-of-type {
+    float: right;
+}
+ */

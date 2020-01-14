@@ -7,14 +7,25 @@
   padding-right: 25px;
 }
 
+#wrongConf,
+#correctConf {
+  text-align: left;
+  color: rgb(175, 174, 174);
+  border-top: 2px solid rgb(175, 174, 174);
+}
+
+#startPage {
+  text-align: center;
+}
+
 .hide {
   display: none;
 }
 
 .active {
   margin-top: 50px;
-  text-align: center;
 }
+
 
 .btn {
   cursor: pointer;

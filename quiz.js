@@ -8,19 +8,24 @@ var highScores = [];
 var goBackBtn = document.querySelector("#goBackBtn");
 var startPageEl = document.querySelector("#startPage");
 var startBtn = document.querySelector("#startBtn");
-var score = document.querySelector("#score")
+var score = document.querySelector("#score");
 var secondsLeft;
 var countdown;
+
 
 init();
 
 highScoresEl.addEventListener("click", function() {hideSwap(scoreboardEl);});
-goBackBtn.addEventListener("click", function() {hideSwap(startPageEl)});
+goBackBtn.addEventListener("click", function() {
+  hideSwap(startPageEl);
+  clearInterval(countdown);
+  score.textContent = "";});
 startBtn.addEventListener("click", function() {
   hideSwap(q1);
   timer();
-  
 });
+// document. 
+
 // NEED TO MAKE A CORRECT ANSWER VALIDATOR HERE SOMEHOW
 // THINKING SOMETHING INVOLVING event.target (li) not equal to correct -15 secondsLeft
 // MOVE TO NEXT Q - UNHIDE "WRONG" FOR ONE SECOND
@@ -31,7 +36,6 @@ startBtn.addEventListener("click", function() {
 
 function timer() {
   // WHEN I GO BACK AND RESTART THE INTERVAL DOUBLES UP.  NEED TO FIX
-  clearInterval(countdown);
   secondsLeft = 75;
   score.textContent = secondsLeft;
   countdown = setInterval(function() {
@@ -41,7 +45,6 @@ function timer() {
       clearInterval(countdown);
       // ADD "YOU ARE SO DUMB" GIF HERE IF TIME ALLOWS
     }
-
   }, 1000)
 };
 
@@ -60,20 +63,79 @@ function timer() {
 //   }, 1000);
 // }
 
-function hideSwap(clickedDestination) {
-var activeEl = document.querySelector(".active");
-
-activeEl.classList.remove("active");
-activeEl.classList.add("hide");
-
-clickedDestination.classList.remove("hide");
-clickedDestination.classList.add("active");
-
+// if (clickedAns.classList.contains("correct")) {
+//   document.querySelector("#correctConf").classList.remove("hide");
+//   document.querySelector("#correctConf").classList.add("active");
+//   setTimeout(function() {
+//     document.querySelector("#correctConf").classList.remove("active");
+//     document.querySelector("#correctConf").classList.add("hide");
+//   }, 75)
   // var value = event.target.value;
   // if(value === "keydown") {
   //   mouseEventsEl.classList.add("hide");
   //   keyEventsEl.classList.remove("hide");
+// }
+
+function showAnsResult(e) {
+  if (e.target.classList.contains("correct")) {
+    document.querySelector("#correctConf").classList.remove("hide");
+    document.querySelector("#correctConf").classList.add("active");
+    setTimeout(function() {
+      document.querySelector("#correctConf").classList.remove("active");
+      document.querySelector("#correctConf").classList.add("hide");
+    }, 750)
+  } else if (e.target.classList.contains("wrong")) {
+    document.querySelector("#wrongConf").classList.remove("hide");
+    document.querySelector("#wrongConf").classList.add("active");
+    setTimeout(function() {
+      document.querySelector("#wrongConf").classList.remove("active");
+      document.querySelector("#wrongConf").classList.add("hide");
+    }, 750)
+  }
 }
+
+document.addEventListener('click', showAnsResult);
+
+function hideSwap(clickedTarg) {
+  var activeEl = document.querySelector(".active");
+
+  activeEl.classList.remove("active");
+  activeEl.classList.add("hide");
+
+  clickedTarg.classList.remove("hide");
+  clickedTarg.classList.add("active");
+  
+}
+// function correctAns() {
+//   var activeElement = document.querySelector(".active");
+//   var activeLi = activeElement.getElementsByTagName("li");
+
+//   activeLi.addEventListener("click", function() {
+//     if (activeLi.classList.contains("correct")) {
+//       document.querySelector("#correctConf").classList.remove("hide");
+//       document.querySelector("#correctConf").classList.add("active");
+//       setTimeout(function() {
+//         document.querySelector("#correctConf").classList.remove("active");
+//         document.querySelector("#correctConf").classList.add("hide");
+//       }, 75)
+//     }
+//   });
+  
+//  ALSO NEED TO DO THE REVERSE OF THIS AS SOON AS I GET IT WORKING
+  // if (document.querySelector(".active").find("li").classList.contains("correct")) {
+  //   document.addEventListener("click", function () {
+  //     document.querySelector("#correctConf").classList.remove("hide");
+  //     document.querySelector("#correctConf").classList.add("active");
+  //     setTimeout(function() {
+  //       document.querySelector("#correctConf").classList.remove("active");
+  //       document.querySelector("#correctConf").classList.add("hide");
+  //     }, 75)
+  //   })
+  // }
+
+  
+
+  
 
 function renderHighScores() {
   // Clear highScoresList element and update highScoresCount
@@ -165,5 +227,5 @@ function init() {
       storeHighScores();
       renderHighScores();
     })
-  ;
+
   

@@ -3,7 +3,6 @@ var highScoresListEl = document.querySelector("#highScoresList");
 var initialsEl = document.querySelector("#initials");
 var highScoresCount = 0;
 var scoreboardEl = document.querySelector("#scoreboard");
-var highScoresEl = document.querySelector("#highScores");
 var highScores = [];
 var goBackBtn = document.querySelector("#goBackBtn");
 var startPageEl = document.querySelector("#startPage");
@@ -11,19 +10,48 @@ var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score");
 var secondsLeft;
 var countdown;
+var question1 = document.querySelector("#q1")
+var question2 = document.querySelector("#q2");
+var question3 = document.querySelector("#q3");
+var question4 = document.querySelector("#q4");
+var question5 = document.querySelector("#q5");
 
 
 init();
 
-highScoresEl.addEventListener("click", function() {hideSwap(scoreboardEl);});
+var highScoresEl = document.querySelector("#highScores");
+highScoresEl.addEventListener("click", function() {
+  hideSwap(scoreboardEl);
+  clearInterval(countdown);});
 goBackBtn.addEventListener("click", function() {
   hideSwap(startPageEl);
   clearInterval(countdown);
   score.textContent = "";});
 startBtn.addEventListener("click", function() {
-  hideSwap(q1);
+  hideSwap(question1);
   timer();
 });
+question1.addEventListener("click", function() {
+  document.addEventListener("click", nextQuestion);
+  hideSwap(question2);
+});
+question2.addEventListener("click", function() {
+  document.addEventListener("click", nextQuestion);
+  hideSwap(question3);
+});
+question3.addEventListener("click", function() {
+  document.addEventListener("click", nextQuestion);
+  hideSwap(question4);
+});
+question4.addEventListener("click", function() {
+  document.addEventListener("click", nextQuestion);
+  hideSwap(question5);
+});
+question5.addEventListener("click", function() {
+  document.addEventListener("click", nextQuestion);
+  hideSwap(allDone);
+});
+
 // document. 
 
 // NEED TO MAKE A CORRECT ANSWER VALIDATOR HERE SOMEHOW
@@ -35,7 +63,7 @@ startBtn.addEventListener("click", function() {
 // })
 
 function timer() {
-  // WHEN I GO BACK AND RESTART THE INTERVAL DOUBLES UP.  NEED TO FIX
+  // WHEN I GO BACK AND RESTART THE INTERVAL DOUBLES UP.  NEED TO FIX --  FIXED!!!!
   secondsLeft = 75;
   score.textContent = secondsLeft;
   countdown = setInterval(function() {
@@ -76,6 +104,21 @@ function timer() {
   //   keyEventsEl.classList.remove("hide");
 // }
 
+
+
+
+
+
+
+//  NOT WORKING
+function nextQuestion(e) {
+  if (e.target.classList.contains("wrong")) {
+    secondsLeft = secondsLeft - 15;
+    score.textContent = secondsLeft;
+  };
+
+};
+
 function showAnsResult(e) {
   if (e.target.classList.contains("correct")) {
     document.querySelector("#correctConf").classList.remove("hide");
@@ -93,10 +136,12 @@ function showAnsResult(e) {
     }, 750)
   }
 }
-
+// This is what shows the "Correct!" or "Wrong!" after clicking an answer
 document.addEventListener('click', showAnsResult);
 
+
 function hideSwap(clickedTarg) {
+  if (clickedTarg.target.tagName === "BUTTON") {
   var activeEl = document.querySelector(".active");
 
   activeEl.classList.remove("active");
@@ -104,7 +149,7 @@ function hideSwap(clickedTarg) {
 
   clickedTarg.classList.remove("hide");
   clickedTarg.classList.add("active");
-  
+  };
 }
 // function correctAns() {
 //   var activeElement = document.querySelector(".active");

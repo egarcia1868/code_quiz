@@ -51,6 +51,7 @@ q4.addEventListener("click", function() {
 q5.addEventListener("click", function() {
   // document.addEventListener("click", check4Wrong);
   hideSwap(allDone);
+  clearInterval(countdown);
 });
 
 // document. 
@@ -187,7 +188,7 @@ function hideSwap(clickedTarg) {
     if (storedHighScores !== null) {
       highScores = storedHighScores;
     }
-    console.log(highScores)
+    // console.log(highScores)
   
     // Render highScores to the DOM
     renderHighScores();
@@ -208,26 +209,30 @@ function renderHighScores() {
   // Render a new li for each high score
   for (var i = 0; i < highScores.length; i++) {
     var highScore = highScores[i];
-console.log(highScores.length)
+    // console.log(highScores.length)
     var li = document.createElement("li");
-    li.textContent = initials + " " + highScore;
+    li.textContent = highScore;
     li.setAttribute("data-index", i);
+    highScoresListEl.appendChild(li);
 
     //This should organize my highscores highest to lowest
-    // if (i > 0) {
+    // if (i > 1) {
     //   var prevHighScore = highScores[--i];
-    //   if (highScore > prevHighScore) {
+    //   // This will compare the score to the previous score to rank properly
+    //   if (((highScore.charAt(highScore.length-2)) + (highScore.charAt(highScore.length-1))).trim() > ((prevHighScore.charAt(prevHighScore.length-2)) +(prevHighScore.charAt(prevHighScore.length-1))).trim()) {
     //     var scoreSwap = function(arr, indexA, indexB) {
     //       var temp = arr[indexA];
     //       arr[indexA] = arr[indexB];
     //       arr[indexB] = temp;
     //     };
-        scoreSwap(highScores, i, --i);
-        renderHighScores();
-      //   li.data-index = li.data-index[++i];
-      //   highScores[]
-      }
-    }
+    //     scoreSwap(highScores, i, --i);
+    //     renderHighScores();
+    // //     li.data-index = li.data-index[++i];
+    //   //   highScores[];
+    //   }
+    // }
+  }
+}
 
     // THIS MAY NOT CORRECTLY ALLOW THE LAST SCORE TO REMAIN -- CHECK BACK  
     // if (i < 11) {
@@ -235,7 +240,7 @@ console.log(highScores.length)
     // } else {
     //   return
 //     }
-//   }
+  // }
 // }
   
   // When form is submitted...
@@ -256,7 +261,8 @@ console.log(highScores.length)
     // }
   
     // Add new initialsEl to highScores array, clear the input
-    highScores.push(initials);
+    highScores.push(initials + " " + secondsLeft);
+    console.log("highscores.push - " + highScores);
     initialsEl.value = "";
   
     // Store updated highScores in localStorage, re-render the list

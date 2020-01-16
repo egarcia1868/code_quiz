@@ -200,39 +200,28 @@ function hideSwap(clickedTarg) {
   }
   
 
-function renderHighScores() {
-  // Clear highScoresList element and update highScoresCount
-  highScoresListEl.innerHTML = "";
-  // highScoresCount = highScores.length;
-
-
-  // Render a new li for each high score
-  for (var i = 0; i < highScores.length; i++) {
-    var highScore = highScores[i];
-    // console.log(highScores.length)
-    var li = document.createElement("li");
-    li.textContent = highScore;
-    li.setAttribute("data-index", i);
-    highScoresListEl.appendChild(li);
-
-    //This should organize my highscores highest to lowest
-    // if (i > 1) {
-    //   var prevHighScore = highScores[--i];
-    //   // This will compare the score to the previous score to rank properly
-    //   if (((highScore.charAt(highScore.length-2)) + (highScore.charAt(highScore.length-1))).trim() > ((prevHighScore.charAt(prevHighScore.length-2)) +(prevHighScore.charAt(prevHighScore.length-1))).trim()) {
-    //     var scoreSwap = function(arr, indexA, indexB) {
-    //       var temp = arr[indexA];
-    //       arr[indexA] = arr[indexB];
-    //       arr[indexB] = temp;
-    //     };
-    //     scoreSwap(highScores, i, --i);
-    //     renderHighScores();
-    // //     li.data-index = li.data-index[++i];
-    //   //   highScores[];
-    //   }
-    // }
+  function renderHighScores() {
+    // Clear highScoresList element and update highScoresCount
+    highScoresListEl.innerHTML = "";
+    var sorter = function(a, b) {
+    if (((a[a.length - 2]) + (a[a.length - 1])) > ((b[b.length - 2]) + (b[b.length - 1]))) {
+        return -1;
+    } else if (((a[a.length - 2]) + (a[a.length - 1])) < ((b[b.length - 2]) + (b[b.length - 1])))
+  { return 1;
+    } else {
+    return 0;
+    }
   }
-}
+  var sorted = highScores.sort(sorter);
+    // Render a new li for each high score
+    for (var i = 0; i < sorted.length; i++) {
+      var highScore = sorted[i];
+      var li = document.createElement("li");
+      li.textContent = highScore;
+      li.setAttribute("data-index", i);
+      highScoresListEl.appendChild(li);
+    }
+  }
 
     // THIS MAY NOT CORRECTLY ALLOW THE LAST SCORE TO REMAIN -- CHECK BACK  
     // if (i < 11) {
@@ -262,7 +251,7 @@ function renderHighScores() {
   
     // Add new initialsEl to highScores array, clear the input
     highScores.push(initials + " " + secondsLeft);
-    console.log("highscores.push - " + highScores);
+    // console.log("highscores.push - " + highScores);
     initialsEl.value = "";
   
     // Store updated highScores in localStorage, re-render the list

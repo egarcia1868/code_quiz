@@ -10,12 +10,13 @@ var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score");
 var secondsLeft;
 var countdown;
-var question1 = document.querySelector("#q1")
-var question2 = document.querySelector("#q2");
-var question3 = document.querySelector("#q3");
-var question4 = document.querySelector("#q4");
-var question5 = document.querySelector("#q5");
+var answer1 = document.querySelector("#ans1");
+var answer2 = document.querySelector("#ans2");
+var answer3 = document.querySelector("#ans3");
+var answer4 = document.querySelector("#ans4");
+var answer5 = document.querySelector("#ans5");
 
+document.addEventListener("click", check4Wrong);
 
 init();
 
@@ -28,27 +29,27 @@ goBackBtn.addEventListener("click", function() {
   clearInterval(countdown);
   score.textContent = "";});
 startBtn.addEventListener("click", function() {
-  hideSwap(question1);
+  hideSwap(q1);
   timer();
 });
-question1.addEventListener("click", function() {
-  document.addEventListener("click", nextQuestion);
-  hideSwap(question2);
+q1.addEventListener("click", function() {
+
+  hideSwap(q2);
 });
-question2.addEventListener("click", function() {
-  document.addEventListener("click", nextQuestion);
-  hideSwap(question3);
+q2.addEventListener("click", function() {
+  // document.addEventListener("click", check4Wrong);
+  hideSwap(q3);
 });
-question3.addEventListener("click", function() {
-  document.addEventListener("click", nextQuestion);
-  hideSwap(question4);
+q3.addEventListener("click", function() {
+  // document.addEventListener("click", check4Wrong);
+  hideSwap(q4);
 });
-question4.addEventListener("click", function() {
-  document.addEventListener("click", nextQuestion);
-  hideSwap(question5);
+q4.addEventListener("click", function() {
+  // document.addEventListener("click", check4Wrong);
+  hideSwap(q5);
 });
-question5.addEventListener("click", function() {
-  document.addEventListener("click", nextQuestion);
+q5.addEventListener("click", function() {
+  // document.addEventListener("click", check4Wrong);
   hideSwap(allDone);
 });
 
@@ -63,7 +64,6 @@ question5.addEventListener("click", function() {
 // })
 
 function timer() {
-  // WHEN I GO BACK AND RESTART THE INTERVAL DOUBLES UP.  NEED TO FIX --  FIXED!!!!
   secondsLeft = 75;
   score.textContent = secondsLeft;
   countdown = setInterval(function() {
@@ -110,13 +110,12 @@ function timer() {
 
 
 
-//  NOT WORKING
-function nextQuestion(e) {
+
+function check4Wrong(e) {
   if (e.target.classList.contains("wrong")) {
     secondsLeft = secondsLeft - 15;
     score.textContent = secondsLeft;
   };
-
 };
 
 function showAnsResult(e) {
@@ -141,7 +140,6 @@ document.addEventListener('click', showAnsResult);
 
 
 function hideSwap(clickedTarg) {
-  if (clickedTarg.target.tagName === "BUTTON") {
   var activeEl = document.querySelector(".active");
 
   activeEl.classList.remove("active");
@@ -149,7 +147,7 @@ function hideSwap(clickedTarg) {
 
   clickedTarg.classList.remove("hide");
   clickedTarg.classList.add("active");
-  };
+  
 }
 // function correctAns() {
 //   var activeElement = document.querySelector(".active");
@@ -180,6 +178,25 @@ function hideSwap(clickedTarg) {
 
   
 
+  function init() {
+    // Get stored scores from localStorage
+    // Parsing the JSON string to an object
+    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+  
+    // If scores were retrieved from localStorage, update the highScores array to it
+    if (storedHighScores !== null) {
+      highScores = storedHighScores;
+    }
+    console.log(highScores)
+  
+    // Render highScores to the DOM
+    renderHighScores();
+  }
+  
+  function storeHighScores() {
+    // Stringify and set "highScores" key in localStorage to highScores array
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+  }
   
 
 function renderHighScores() {
@@ -191,20 +208,20 @@ function renderHighScores() {
   // Render a new li for each high score
   for (var i = 0; i < highScores.length; i++) {
     var highScore = highScores[i];
-
+console.log(highScores.length)
     var li = document.createElement("li");
     li.textContent = initials + " " + highScore;
     li.setAttribute("data-index", i);
 
     //This should organize my highscores highest to lowest
-    if (i > 0) {
-      var prevHighScore = highScores[--i];
-      if (highScore > prevHighScore) {
-        var scoreSwap = function(arr, indexA, indexB) {
-          var temp = arr[indexA];
-          arr[indexA] = arr[indexB];
-          arr[indexB] = temp;
-        };
+    // if (i > 0) {
+    //   var prevHighScore = highScores[--i];
+    //   if (highScore > prevHighScore) {
+    //     var scoreSwap = function(arr, indexA, indexB) {
+    //       var temp = arr[indexA];
+    //       arr[indexA] = arr[indexB];
+    //       arr[indexB] = temp;
+    //     };
         scoreSwap(highScores, i, --i);
         renderHighScores();
       //   li.data-index = li.data-index[++i];
@@ -212,32 +229,14 @@ function renderHighScores() {
       }
     }
 
-    // THIS MAY NOT CORRECTLY ALLOW THE LAST SCORE TO REMAIN -- CHECK BACK
-    if (i < 11) {
-    highScoresListEl.appendChild(li);
-    } else {
-      return
-    }
-  }
-}
-function init() {
-    // Get stored scores from localStorage
-    // Parsing the JSON string to an object
-    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-  
-    // If scores were retrieved from localStorage, update the highScores array to it
-    if (storedHighScores !== null) {
-      highScores = storedHighScores;
-    }
-  
-    // Render highScores to the DOM
-    renderHighScores();
-  }
-  
-  function storeHighScores() {
-    // Stringify and set "highScores" key in localStorage to highScores array
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-  }
+    // THIS MAY NOT CORRECTLY ALLOW THE LAST SCORE TO REMAIN -- CHECK BACK  
+    // if (i < 11) {
+    // highScoresListEl.appendChild(li);
+    // } else {
+    //   return
+//     }
+//   }
+// }
   
   // When form is submitted...
   highScoresFormEl.addEventListener("submit", function(event) {
@@ -250,10 +249,11 @@ function init() {
     // MAY NEED TO RETURN HERE IF IT DOESN'T ALLOW FOR INITIAL REENTRY
     if (initials === "") {
       return;
-    } else if (initials.length > 3) {
-      alert("3 letter initials maximum, please.");
-      return;      
-    }
+    } 
+    // else if (initials.length > 3) {
+    //   alert("3 letter initials maximum, please.");
+    //   return;      
+    // }
   
     // Add new initialsEl to highScores array, clear the input
     highScores.push(initials);

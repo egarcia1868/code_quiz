@@ -234,16 +234,28 @@ function hideSwap(clickedTarg) {
   
   // When form is submitted...
   highScoresFormEl.addEventListener("submit", function(event) {
+    var initialVerify = function () {
+      if (initials === "") {
+        return;
+      } else if (initials.length > 3) {
+        alert("3 letter initials maximum, please.");
+        initialVerify();
+      }
+    };
+
+    initialVerify();
+
     hideSwap(scoreboard);
     event.preventDefault();
   
     var initials = initialsEl.value.trim();
   
+
     // Return from function early if submitted initialsEl is blank or too long
     // MAY NEED TO RETURN HERE IF IT DOESN'T ALLOW FOR INITIAL REENTRY
-    if (initials === "") {
-      return;
-    } 
+    // if (initials === "") {
+    //   return;
+    // } 
     // else if (initials.length > 3) {
     //   alert("3 letter initials maximum, please.");
     //   return;      

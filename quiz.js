@@ -295,49 +295,52 @@ function hideSwap(clickedTarg) {
 
   
 
-  function init() {
-    // Get stored scores from localStorage
-    // Parsing the JSON string to an object
-    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-  
-    // If scores were retrieved from localStorage, update the highScores array to it
-    if (storedHighScores !== null) {
-      highScores = storedHighScores;
-    }
-    // console.log(highScores)
-  
-    // Render highScores to the DOM
-    renderHighScores();
-  }
-  
-  function storeHighScores() {
-    // Stringify and set "highScores" key in localStorage to highScores array
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-  }
-  
+function init() {
+  // Get stored scores from localStorage
+  // Parsing the JSON string to an object
+  var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
 
-  function renderHighScores() {
-    // Clear highScoresList element and update highScoresCount
-    highScoresListEl.innerHTML = "";
-    var sorter = function(a, b) {
-    if (((a[a.length - 2]) + (a[a.length - 1])) > ((b[b.length - 2]) + (b[b.length - 1]))) {
-        return -1;
-    } else if (((a[a.length - 2]) + (a[a.length - 1])) < ((b[b.length - 2]) + (b[b.length - 1])))
-  { return 1;
-    } else {
-    return 0;
-    }
+  // If scores were retrieved from localStorage, update the highScores array to it
+  if (storedHighScores !== null) {
+    highScores = storedHighScores;
   }
-  var sorted = highScores.sort(sorter);
-    // Render a new li for each high score
-    for (var i = 0; i < sorted.length; i++) {
-      var highScore = sorted[i];
-      var li = document.createElement("li");
-      li.textContent = highScore;
-      li.setAttribute("data-index", i);
-      highScoresListEl.appendChild(li);
-    }
+  // console.log(highScores)
+
+  // Render highScores to the DOM
+  renderHighScores();
+}
+
+function storeHighScores() {
+  // Stringify and set "highScores" key in localStorage to highScores array
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
+
+function renderHighScores() {
+  // Clear highScoresList element and update highScoresCount
+  highScoresListEl.innerHTML = "";
+  var sorter = function(a, b) {
+  if (((a[a.length - 2]) + (a[a.length - 1])) > ((b[b.length - 2]) + (b[b.length - 1]))) {
+      return -1;
+  } else if (((a[a.length - 2]) + (a[a.length - 1])) < ((b[b.length - 2]) + (b[b.length - 1])))
+{ return 1;
+  } else {
+  return 0;
   }
+}
+var sorted = highScores.sort(sorter);
+  // Render a new li for each high score
+  for (var i = 0; i < sorted.length; i++) {
+    if (i > 10) {
+      break
+    }
+    var highScore = sorted[i];
+    var li = document.createElement("li");
+    li.textContent = highScore;
+    li.setAttribute("data-index", i);
+    highScoresListEl.appendChild(li);
+  }
+}
 
     // THIS MAY NOT CORRECTLY ALLOW THE LAST SCORE TO REMAIN -- CHECK BACK  
     // if (i < 11) {

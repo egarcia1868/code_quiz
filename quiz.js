@@ -331,12 +331,12 @@ function renderHighScores() {
 var sorted = highScores.sort(sorter);
   // Render a new li for each high score
   for (var i = 0; i < sorted.length; i++) {
-    if (i > 10) {
-      break
+    if (i > 9) {
+      return
     }
     var highScore = sorted[i];
     var li = document.createElement("li");
-    li.textContent = highScore;
+    li.textContent = i+1 + " - " + highScore;
     li.setAttribute("data-index", i);
     highScoresListEl.appendChild(li);
   }
@@ -353,22 +353,23 @@ var sorted = highScores.sort(sorter);
   
   // When form is submitted...
   highScoresFormEl.addEventListener("submit", function(event) {
-    var initialVerify = function () {
-      if (initials === "") {
-        return;
-      } else if (initials.length > 3) {
-        alert("3 letter initials maximum, please.");
-        initialVerify();
-      }
-    };
 
-    initialVerify();
 
     hideSwap(scoreboard);
     event.preventDefault();
   
     var initials = initialsEl.value.trim();
-  
+      if (initials === "") {
+        return;
+      }
+    
+    //   } else if (initials.length > 3) {
+    //     alert("3 letter initials maximum, please.");
+    //     initialVerify();
+    //   }
+    // };
+
+    // initialVerify();  
 
     // Return from function early if submitted initialsEl is blank or too long
     // MAY NEED TO RETURN HERE IF IT DOESN'T ALLOW FOR INITIAL REENTRY

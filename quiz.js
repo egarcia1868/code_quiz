@@ -10,11 +10,11 @@ var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score");
 var secondsLeft;
 var countdown;
-var answer1 = document.querySelector("#ans1");
-var answer2 = document.querySelector("#ans2");
-var answer3 = document.querySelector("#ans3");
-var answer4 = document.querySelector("#ans4");
-var answer5 = document.querySelector("#ans5");
+// var answer1 = document.querySelector("#ans1");
+// var answer2 = document.querySelector("#ans2");
+// var answer3 = document.querySelector("#ans3");
+// var answer4 = document.querySelector("#ans4");
+// var answer5 = document.querySelector("#ans5");
 
 document.addEventListener("click", check4Wrong);
 
@@ -32,27 +32,69 @@ startBtn.addEventListener("click", function() {
   hideSwap(q1);
   timer();
 });
-q1.addEventListener("click", function() {
+// q1.addEventListener("click", function() {
+let buttons = document.querySelectorAll("button#ans1, button.wrong1")
+for (const button of buttons) {
+  button.addEventListener('click', function(event) {
+    //...
+    button.addEventListener("click", check4Wrong);
+    hideSwap(q2);
+  })
+}
+buttons = document.querySelectorAll("button#ans2, button.wrong2")
+for (const button of buttons) {
+  button.addEventListener('click', function(event) {
+    //...
+    button.addEventListener("click", check4Wrong);
+    hideSwap(q3);
+  })
+}
+buttons = document.querySelectorAll("button#ans3, button.wrong3")
+for (const button of buttons) {
+  button.addEventListener('click', function(event) {
+    //...
+    button.addEventListener("click", check4Wrong);
+    hideSwap(q4);
+  })
+}
+buttons = document.querySelectorAll("button#ans4, button.wrong4")
+for (const button of buttons) {
+  button.addEventListener('click', function(event) {
+    //...
+    button.addEventListener("click", check4Wrong);
+    hideSwap(q5);
+  })
+}
+buttons = document.querySelectorAll("button#ans5, button.wrong5")
+for (const button of buttons) {
+  button.addEventListener('click', function(event) {
+    //...
+    button.addEventListener("click", check4Wrong);
 
-  hideSwap(q2);
-});
-q2.addEventListener("click", function() {
-  // document.addEventListener("click", check4Wrong);
-  hideSwap(q3);
-});
-q3.addEventListener("click", function() {
-  // document.addEventListener("click", check4Wrong);
-  hideSwap(q4);
-});
-q4.addEventListener("click", function() {
-  // document.addEventListener("click", check4Wrong);
-  hideSwap(q5);
-});
-q5.addEventListener("click", function() {
-  // document.addEventListener("click", check4Wrong);
   hideSwap(allDone);
   clearInterval(countdown);
-});
+  })
+}
+  // var matches = myBox.querySelectorAll("div.note, div.alert");
+  // hideSwap(q2);
+// });
+// q2.addEventListener("click", function() {
+//   // document.addEventListener("click", check4Wrong);
+//   hideSwap(q3);
+// });
+// q3.addEventListener("click", function() {
+//   // document.addEventListener("click", check4Wrong);
+//   hideSwap(q4);
+// });
+// q4.addEventListener("click", function() {
+//   // document.addEventListener("click", check4Wrong);
+//   hideSwap(q5);
+// });
+// q5.addEventListener("click", function() {
+//   // document.addEventListener("click", check4Wrong);
+//   hideSwap(allDone);
+//   clearInterval(countdown);
+// });
 
 // document. 
 
@@ -113,8 +155,54 @@ function timer() {
 
 
 function check4Wrong(e) {
-  if (e.target.classList.contains("wrong")) {
+  if (e.target.classList.contains("wrong1")) {
     secondsLeft = secondsLeft - 15;
+    if (secondsLeft < 0) {
+      secondsLeft = 0;
+        alert("Sorry, a score of 0 will not be recorded to the scoreboard...");
+        hideSwap(scoreboard);
+        clearInterval(countdown)
+    };
+    score.textContent = secondsLeft;
+  };
+  if (e.target.classList.contains("wrong2")) {
+    secondsLeft = secondsLeft - 15;
+    if (secondsLeft < 0) {
+      secondsLeft = 0;
+        alert("Sorry, a score of 0 will not be recorded to the scoreboard...");
+        hideSwap(scoreboard);
+        clearInterval(countdown)
+    };
+    score.textContent = secondsLeft;
+  };
+  if (e.target.classList.contains("wrong3")) {
+    secondsLeft = secondsLeft - 15;
+    if (secondsLeft < 0) {
+      secondsLeft = 0;
+        alert("Sorry, a score of 0 will not be recorded to the scoreboard...");
+        hideSwap(scoreboard);
+        clearInterval(countdown)
+    };
+    score.textContent = secondsLeft;
+  };
+  if (e.target.classList.contains("wrong4")) {
+    secondsLeft = secondsLeft - 15;
+    if (secondsLeft < 0) {
+      secondsLeft = 0;
+        alert("Sorry, a score of 0 will not be recorded to the scoreboard...");
+        hideSwap(scoreboard);
+        clearInterval(countdown)
+    };
+    score.textContent = secondsLeft;
+  };
+  if (e.target.classList.contains("wrong5")) {
+    secondsLeft = secondsLeft - 15;
+    if (secondsLeft < 0) {
+      secondsLeft = 0;
+        alert("Sorry, a score of 0 will not be recorded to the scoreboard...");
+        hideSwap(scoreboard);
+        clearInterval(countdown)
+    };
     score.textContent = secondsLeft;
   };
 };
@@ -127,14 +215,42 @@ function showAnsResult(e) {
       document.querySelector("#correctConf").classList.remove("active");
       document.querySelector("#correctConf").classList.add("hide");
     }, 750)
-  } else if (e.target.classList.contains("wrong")) {
+  } else if (e.target.classList.contains("wrong1", "wrong2", "wrong3", "wrong4", "wrong5")) {
     document.querySelector("#wrongConf").classList.remove("hide");
     document.querySelector("#wrongConf").classList.add("active");
     setTimeout(function() {
       document.querySelector("#wrongConf").classList.remove("active");
       document.querySelector("#wrongConf").classList.add("hide");
     }, 750)
-  }
+  } else if (e.target.classList.contains("wrong2")) {
+    document.querySelector("#wrongConf").classList.remove("hide");
+    document.querySelector("#wrongConf").classList.add("active");
+    setTimeout(function() {
+      document.querySelector("#wrongConf").classList.remove("active");
+      document.querySelector("#wrongConf").classList.add("hide");
+    }, 750)
+  } else if (e.target.classList.contains("wrong3")) {
+    document.querySelector("#wrongConf").classList.remove("hide");
+    document.querySelector("#wrongConf").classList.add("active");
+    setTimeout(function() {
+      document.querySelector("#wrongConf").classList.remove("active");
+      document.querySelector("#wrongConf").classList.add("hide");
+    }, 750)
+  } else if (e.target.classList.contains("wrong4")) {
+    document.querySelector("#wrongConf").classList.remove("hide");
+    document.querySelector("#wrongConf").classList.add("active");
+    setTimeout(function() {
+      document.querySelector("#wrongConf").classList.remove("active");
+      document.querySelector("#wrongConf").classList.add("hide");
+    }, 750)
+  } else if (e.target.classList.contains("wrong5")) {
+    document.querySelector("#wrongConf").classList.remove("hide");
+    document.querySelector("#wrongConf").classList.add("active");
+    setTimeout(function() {
+      document.querySelector("#wrongConf").classList.remove("active");
+      document.querySelector("#wrongConf").classList.add("hide");
+    }, 750)
+  } 
 }
 // This is what shows the "Correct!" or "Wrong!" after clicking an answer
 document.addEventListener('click', showAnsResult);

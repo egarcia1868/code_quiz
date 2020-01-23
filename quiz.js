@@ -351,53 +351,52 @@ var sorted = highScores.sort(sorter);
   // }
 // }
   
-  // When form is submitted...
-  highScoresFormEl.addEventListener("submit", function(event) {
+// When form is submitted...
+highScoresFormEl.addEventListener("submit", function(event) {
 
 
-    hideSwap(scoreboard);
-    event.preventDefault();
+  hideSwap(scoreboard);
+  event.preventDefault();
+
+  var initials = initialsEl.value.trim();
+    if (initials === "") {
+      return;
+    }
   
-    var initials = initialsEl.value.trim();
-      if (initials === "") {
-        return;
-      }
-    
-    //   } else if (initials.length > 3) {
-    //     alert("3 letter initials maximum, please.");
-    //     initialVerify();
-    //   }
-    // };
+  //   } else if (initials.length > 3) {
+  //     alert("3 letter initials maximum, please.");
+  //     initialVerify();
+  //   }
+  // };
 
-    // initialVerify();  
+  // initialVerify();  
 
-    // Return from function early if submitted initialsEl is blank or too long
-    // MAY NEED TO RETURN HERE IF IT DOESN'T ALLOW FOR INITIAL REENTRY
-    // if (initials === "") {
-    //   return;
-    // } 
-    // else if (initials.length > 3) {
-    //   alert("3 letter initials maximum, please.");
-    //   return;      
-    // }
-  
-    // Add new initialsEl to highScores array, clear the input
-    highScores.push(initials + " " + secondsLeft);
-    // console.log("highscores.push - " + highScores);
-    initialsEl.value = "";
-  
-    // Store updated highScores in localStorage, re-render the list
+  // Return from function early if submitted initialsEl is blank or too long
+  // MAY NEED TO RETURN HERE IF IT DOESN'T ALLOW FOR INITIAL REENTRY
+  // if (initials === "") {
+  //   return;
+  // } 
+  // else if (initials.length > 3) {
+  //   alert("3 letter initials maximum, please.");
+  //   return;      
+  // }
+
+  // Add new initialsEl to highScores array, clear the input
+  highScores.push(initials + " " + secondsLeft);
+  // console.log("highscores.push - " + highScores);
+  initialsEl.value = "";
+
+  // Store updated highScores in localStorage, re-render the list
+  storeHighScores();
+  renderHighScores();
+});
+
+// When the clear highscores button is clicked...
+document.querySelector("#clearScores").addEventListener("click", function(event) {
+  highScores = [];
+
+  //   // Store empty highScores in localStorage, re-render the empty list
     storeHighScores();
     renderHighScores();
-  });
-  
-  // When the clear highscores button is clicked...
-  document.querySelector("#clearScores").addEventListener("click", function(event) {
-    highScores = [];
+  })
 
-    //   // Store empty highScores in localStorage, re-render the empty list
-      storeHighScores();
-      renderHighScores();
-    })
-
-  

@@ -215,7 +215,7 @@ function showAnsResult(e) {
       document.querySelector("#correctConf").classList.remove("active");
       document.querySelector("#correctConf").classList.add("hide");
     }, 750)
-  } else if (e.target.classList.contains("wrong1", "wrong2", "wrong3", "wrong4", "wrong5")) {
+  } else if (e.target.classList.contains("wrong1")) {
     document.querySelector("#wrongConf").classList.remove("hide");
     document.querySelector("#wrongConf").classList.add("active");
     setTimeout(function() {
